@@ -1,9 +1,9 @@
 <template>
   <div id="playfair">
-    <public></public>
+    <public :key-word="keyword"></public>
     <div class="keyword">
       <label>请输入关键词:</label>
-      <input type="text" v-model="keyword" placeholder="monarchy">
+      <input type="text" v-model="keyword" v-on:blur="checkWord" placeholder="monarchy">
     </div>
   </div>
 </template>
@@ -19,13 +19,19 @@
       return {
         keyword: 'monarchy'
       }
+    },
+    methods: {
+      checkWord() {
+        console.log(this.keyword)
+        this.keyword.replace(/j\gi/, 'i')
+      }
     }
   }
 </script>
 
 <style>
   .keyword {
-    margin-top: 20px;
+    margin-top: 30px;
   }
   .keyword input {
     margin-left: 10px;
